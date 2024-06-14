@@ -14,4 +14,5 @@ then the 'X' or 'O' is displayed at the desired position.
 a video that shows how it works : 
 
 https://github.com/LatifEmbedded/Tic-Tac-Toe-Game/assets/155848361/7da464e2-1f10-430b-8a64-5d3d2b39d3ed
-
+#### note : 
+you can accelerate the video up to *2
