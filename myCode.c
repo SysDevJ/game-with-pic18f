@@ -13,6 +13,9 @@ unsigned char counter = 0;
 unsigned char choose = 0;
 unsigned char x = 0, y = 0;
 unsigned char player = 0;
+unsigned char counting = 0;
+unsigned char cell = 0;
+
 unsigned char map[size][size];
 unsigned char string_1[] = "ROW :  ";
 unsigned char string_2[] = "COLUMN :  ";
@@ -63,8 +66,11 @@ void myInterruptFunction(void)
 			state = 1;
 			enterRowNumber();		
 		}	
-		else								// PRESS TWICE
+		else		
+		{			
+			state = 0;				
 			enterColumnNumber();
+		}
 	}
 	else if(INTCONbits.INT0IF == 1)			// INT0 INTERRUPT
 	{
@@ -297,6 +303,7 @@ void fillArray(void)
 }
 void checkPosition(void)
 {
+	++counting;
 	if(map[x][y] == 'E')
 	{
 		static unsigned char decision = 0;
@@ -344,7 +351,8 @@ void checkPosition(void)
 			player = 1;
 		else								// DISPLAY PLAYER 1
 			player = 0;
-		checkWinner();
+		if(counting >= 4)
+			checkWinner();
 	}
 	else
 	{	
@@ -384,6 +392,7 @@ void justDisplay(unsigned char* pointer)				// FUNCTION TO DISPLAY STRINGS
 }
 void checkWinner(void)										// CHECK PLAYER 1 WINS
 {
+	
 	if(map[0][0] == 'X' && map[0][1] == 'X' && map[0][2] == 'X')
 	{
 		deletForthLine();
@@ -423,5 +432,55 @@ void checkWinner(void)										// CHECK PLAYER 1 WINS
 	{
 		deletForthLine();
 		justDisplay(string_7);	
+	}
+	else if(map[0][0] == 'O' && map[0][1] == 'O' && map[0][2] == 'O')
+	{
+		deletForthLine();
+		justDisplay(string_8);	
+	}
+	else if(map[1][0] == 'O' && map[1][1] == 'O' && map[1][2] == 'O')
+	{
+		deletForthLine();
+		justDisplay(string_8);	
+	}
+	else if(map[2][0] == 'O' && map[2][1] == 'O' && map[2][2] == 'O')
+	{
+		deletForthLine();
+		justDisplay(string_8);	
+	}
+	else if(map[0][0] == 'O' && map[1][0] == 'O' && map[2][0] == 'O')
+	{
+		deletForthLine();
+		justDisplay(string_8);	
+	}
+	else if(map[0][1] == 'O' && map[1][1] == 'O' && map[2][1] == 'O')
+	{
+		deletForthLine();
+		justDisplay(string_8);	
+	}
+	else if(map[0][2] == 'O' && map[1][2] == 'O' && map[2][2] == 'O')
+	{
+		deletForthLine();
+		justDisplay(string_8);	
+	}
+	else if(map[0][0] == 'O' && map[1][1] == 'O' && map[2][2] == 'O')
+	{
+		deletForthLine();
+		justDisplay(string_8);	
+	}
+	else if(map[0][2] =='O' && map[1][1] == 'O' && map[2][0] == 'O')
+	{
+		deletForthLine();
+		justDisplay(string_8);	
+	}
+	else 	
+	{
+		++cell;
+		if(cell == 6)
+		{
+			unsigned char str[] = "DRAW";
+			deletForthLine();
+			justDisplay(str);
+		}
 	}
 }
