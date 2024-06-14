@@ -21,6 +21,7 @@ If the chosen position is already occupied by an 'X' or 'O', an error message ('
 ### VIDEO : 
 a video that shows how it works : 
 
-https://github.com/LatifEmbedded/Tic-Tac-Toe-Game/assets/155848361/7da464e2-1f10-430b-8a64-5d3d2b39d3ed
+https://github.com/LatifEmbedded/Tic-Tac-Toe-Game/assets/155848361/f013c3e8-9c1e-40d9-b821-9920aadebb5b
+
 #### note : 
 you can accelerate the video up to *2
