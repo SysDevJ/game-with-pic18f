@@ -50,6 +50,8 @@ void fillArray(void);
 void fillPlayer(unsigned char* pointer);
 void checkWinner(void);
 void justDisplay(unsigned char* pointer);
+void clearEntire(void);
+
 
 #pragma interrupt myInterruptFunction
 void myInterruptFunction(void)
@@ -396,37 +398,44 @@ void checkWinner(void)										// CHECK PLAYER 1 WINS
 	if(map[0][0] == 'X' && map[0][1] == 'X' && map[0][2] == 'X')
 	{
 		deletForthLine();
-		justDisplay(string_7);	
+		justDisplay(string_7);
+		clearEntire();		
 	}
 	else if(map[1][0] == 'X' && map[1][1] == 'X' && map[1][2] == 'X')
 	{
 		deletForthLine();
 		justDisplay(string_7);	
+		clearEntire();	
 	}
 	else if(map[2][0] == 'X' && map[2][1] == 'X' && map[2][2] == 'X')
 	{
 		deletForthLine();
-		justDisplay(string_7);	
+		justDisplay(string_7);
+		clearEntire();		
 	}
 	else if(map[0][0] == 'X' && map[1][0] == 'X' && map[2][0] == 'X')
 	{
 		deletForthLine();
-		justDisplay(string_7);	
+		justDisplay(string_7);
+		clearEntire();		
 	}
 	else if(map[0][1] == 'X' && map[1][1] == 'X' && map[2][1] == 'X')
 	{
 		deletForthLine();
-		justDisplay(string_7);	
+		justDisplay(string_7);
+		clearEntire();		
 	}
 	else if(map[0][2] == 'X' && map[1][2] == 'X' && map[2][2] == 'X')
 	{
 		deletForthLine();
-		justDisplay(string_7);	
+		justDisplay(string_7);
+		clearEntire();		
 	}
 	else if(map[0][0] == 'X' && map[1][1] == 'X' && map[2][2] == 'X')
 	{
 		deletForthLine();
-		justDisplay(string_7);	
+		justDisplay(string_7);
+		clearEntire();		
 	}
 	else if(map[0][2] == 'X' && map[1][1] == 'X' && map[2][0] == 'X')
 	{
@@ -437,41 +446,49 @@ void checkWinner(void)										// CHECK PLAYER 1 WINS
 	{
 		deletForthLine();
 		justDisplay(string_8);	
+		clearEntire();	
 	}
 	else if(map[1][0] == 'O' && map[1][1] == 'O' && map[1][2] == 'O')
 	{
 		deletForthLine();
 		justDisplay(string_8);	
+		clearEntire();	
 	}
 	else if(map[2][0] == 'O' && map[2][1] == 'O' && map[2][2] == 'O')
 	{
 		deletForthLine();
 		justDisplay(string_8);	
+		clearEntire();	
 	}
 	else if(map[0][0] == 'O' && map[1][0] == 'O' && map[2][0] == 'O')
 	{
 		deletForthLine();
 		justDisplay(string_8);	
+		clearEntire();	
 	}
 	else if(map[0][1] == 'O' && map[1][1] == 'O' && map[2][1] == 'O')
 	{
 		deletForthLine();
-		justDisplay(string_8);	
+		justDisplay(string_8);
+		clearEntire();		
 	}
 	else if(map[0][2] == 'O' && map[1][2] == 'O' && map[2][2] == 'O')
 	{
 		deletForthLine();
 		justDisplay(string_8);	
+		clearEntire();	
 	}
 	else if(map[0][0] == 'O' && map[1][1] == 'O' && map[2][2] == 'O')
 	{
 		deletForthLine();
-		justDisplay(string_8);	
+		justDisplay(string_8);
+		clearEntire();		
 	}
 	else if(map[0][2] =='O' && map[1][1] == 'O' && map[2][0] == 'O')
 	{
 		deletForthLine();
-		justDisplay(string_8);	
+		justDisplay(string_8);
+		clearEntire();	
 	}
 	else 	
 	{
@@ -481,6 +498,35 @@ void checkWinner(void)										// CHECK PLAYER 1 WINS
 			unsigned char str[] = "DRAW";
 			deletForthLine();
 			justDisplay(str);
+			clearEntire();	
 		}
 	}
+}
+void clearEntire(void)
+{
+	unsigned char i = 0;
+	counter = 0;
+	state = 0;
+	choose = 0;
+	x = 0;
+	y = 0;
+	k = 0;
+	cell = 0;
+	counting = 0;
+	player = 0;
+	delay250ms();
+	delay250ms();
+	delay250ms();
+	delay250ms();
+	LATD = 0x01;
+	commandInst();
+	delay250ms();
+	while(i<3)								// CREAT A TABLE OF 3 LINE + 3 COLUMNS
+	{	
+		creatTable();
+		jumpLine(i);						// JUMP TO NEXT LINE BASED ON I
+		++i;
+	}
+	fillArray();
+	firstLine();
 }
