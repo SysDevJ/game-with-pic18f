@@ -1,14 +1,22 @@
 ### Tic-Tac-Toe Game :
 
-- it uses three buttons connected to RB0-RB1-RB2 each one has at least 2 operations.
-- the user first must press the button connected to RB1 and then he can enter the number of row and column where he wants to put his 'X' or 'O'.
-- Player 1 always plays with 'X' and Player 2 always plays with 'O'.
-- after entering the number of row he must validate his choice by clicking the button connected to RB2.
-- after that he clicks the button connected to RB1 to start entering the number of column.
-- the button connected to RB0 is responsible about choosing the number of row/column (one click = 0, second click = 1, third click = 2).
-- and after one of the players enteres his choice row and column then he validate by using the button connected to pin RB2
-then the 'X' or 'O' is displayed at the desired position.
-- if already exitst 'X' or 'O' in the entered position then an error message is displayed ('WRONG POSITION') and you can re-enter by clicking the button connected to RB1.
+###### Tic-Tac-Toe Game Instructions:
+
+1)-Setup: The game uses three buttons connected to RB0, RB1, and RB2, each performing specific functions.
+
+2)-Gameplay Sequence:
+
+Step 1: The user must first press the button connected to RB1.
+Step 2: Select the row and column where you want to place your 'X' or 'O'.
+Player Roles: Player 1 uses 'X' and Player 2 uses 'O'.
+Step 3: After choosing the row, validate your choice by pressing the button connected to RB2.
+Step 4: Click the button connected to RB1 again to enter the column number.
+Step 5: The button connected to RB0 is used to choose the row/column number (first click = 0, second click = 1, third click = 2).
+
+3)-Placement:
+
+Once a player selects their row and column, validate the choice by pressing the button connected to RB2. The 'X' or 'O' will be displayed at the selected position.
+If the chosen position is already occupied by an 'X' or 'O', an error message ('WRONG POSITION') will appear. The player can then re-enter the row and column by pressing the button connected to RB1.
 
 ### VIDEO : 
 a video that shows how it works : 
