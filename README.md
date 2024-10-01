@@ -24,7 +24,7 @@ a video that shows how it works :
 https://github.com/LatifEmbedded/Tic-Tac-Toe-Game/assets/155848361/f013c3e8-9c1e-40d9-b821-9920aadebb5b
 
 ### note : 
--you can accelerate the video up to *2.
--it needs some modification but works fine.
+• you can accelerate the video up to *2.
+• it needs some modification but works fine.
 
 
