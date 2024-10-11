@@ -1,58 +1,8 @@
 #include <p18f452.h>
+#include "lcd.h"
+#include "player.h"
 
 #pragma config WDT = OFF
-
-#define		rs		PORTCbits.RC0
-#define 	rw 		PORTCbits.RC1
-#define 	en		PORTCbits.RC2
-#define		size    3
-
-unsigned char state = 0;
-unsigned char k = 0;
-unsigned char counter = 0;
-unsigned char choose = 0;
-unsigned char x = 0, y = 0;
-unsigned char player = 0;
-unsigned char counting = 0;
-unsigned char cell = 0;
-
-unsigned char map[size][size];
-unsigned char string_1[] = "ROW :  ";
-unsigned char string_2[] = "COLUMN :  ";
-unsigned char string_3[] = {0, 1, 2, '\0'};
-unsigned char string_4[] = "WRONG POSITION";
-unsigned char string_5[] = "PLAYER 1";
-unsigned char string_6[] = "PLAYER 2";
-unsigned char string_7[] = "PLAYER 1 WINS";
-unsigned char string_8[] = "PLAYER 2 WINS";
-
-
-void initiaLcd(void);			
-void delay250ms(void);		
-void delay3us(void);			
-void commandInst(void);
-void busyFlag(void);				
-void dataInst(void);				
-void timer0Generation(void);
-void creatTable(void);
-void shiftCursor(unsigned char limit);
-void jumpLine(unsigned char i);
-void firstLine(void);
-void secondLine(void);
-void thirdLine(void);
-void forthLine(void);
-void enterRowNumber(void);
-void enterColumnNumber(void);
-void deletForthLine(void);
-void displayResult(void);
-void checkPosition(void);
-void fillArray(void);
-void fillPlayer(unsigned char* pointer);
-void checkWinner(void);
-void justDisplay(unsigned char* pointer);
-void clearEntire(void);
-
-
 #pragma interrupt myInterruptFunction
 void myInterruptFunction(void)
 {	
@@ -163,32 +113,32 @@ void delay3us(void)
 }
 void commandInst(void)
 {
-		rs = 0;
-		rw = 0;
-		en = 1;
+		RS_PIN = 0;
+		RW_PIN = 0;
+		EN_PIN = 1;
 		delay3us();
-		en = 0;
+		EN_PIN = 0;
 }
 void dataInst(void)
 {
-		rs = 1;
-		rw = 0;
-		en = 1;
+		RS_PIN = 1;
+		RW_PIN = 0;
+		EN_PIN = 1;
 		delay3us();
-		en = 0;
+		EN_PIN = 0;
 }
 void busyFlag(void)
 {
-		rs = 0;
-		rw = 1;	
+		RS_PIN = 0;
+		RW_PIN = 1;	
 		TRISDbits.TRISD7 = 1;
 		do
 		{
-			en = 0;
+			EN_PIN = 0;
 			delay3us();
-			en = 1;
+			EN_PIN = 1;
 		}while(PORTDbits.RD7 == 1);
-		en = 0;
+		EN_PIN = 0;
 		TRISDbits.TRISD7 = 0;
 }
 void timer0Generation(void)
